@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "cooperation\npunishment", "label": "cooperation\npunishment", "shape": "dot", "size": 10}, {"id": "game\ngroup", "label": "game\ngroup", "shape": "dot", "size": 10}, {"id": "cooperation\nbehavior", "label": "cooperation\nbehavior", "shape": "dot", "size": 10}, {"id": "cooperation\nsocial", "label": "cooperation\nsocial", "shape": "dot", "size": 10}, {"id": "cooperation\ngame", "label": "cooperation\ngame", "shape": "dot", "size": 10}, {"id": "game\ncooperation", "label": "game\ncooperation", "shape": "dot", "size": 10}, {"id": "cooperation\ngroup", "label": "cooperation\ngroup", "shape": "dot", "size": 10}, {"id": "good\ncontribution", "label": "good\ncontribution", "shape": "dot", "size": 10}, {"id": "contribution\ngood", "label": "contribution\ngood", "shape": "dot", "size": 10}, {"id": "punishment\nexperiment", "label": "punishment\nexperiment", "shape": "dot", "size": 10}, {"id": "group\ngame", "label": "group\ngame", "shape": "dot", "size": 10}, {"id": "game\nbehavior", "label": "game\nbehavior", "shape": "dot", "size": 10}, {"id": "social\ngame", "label": "social\ngame", "shape": "dot", "size": 10}, {"id": "need\ngame", "label": "need\ngame", "shape": "dot", "size": 10}, {"id": "logical\nplayer", "label": "logical\nplayer", "shape": "dot", "size": 10}, {"id": "tension\ngroup", "label": "tension\ngroup", "shape": "dot", "size": 10}, {"id": "group\nbehavior", "label": "group\nbehavior", "shape": "dot", "size": 10}, {"id": "person\nstrategy", "label": "person\nstrategy", "shape": "dot", "size": 10}, {"id": "role\nsatisfaction", "label": "role\nsatisfaction", "shape": "dot", "size": 10}, {"id": "ingroup\nbias", "label": "ingroup\nbias", "shape": "dot", "size": 10}, {"id": "group\ngood", "label": "group\ngood", "shape": "dot", "size": 10}, {"id": "outgroup\nfailure", "label": "outgroup\nfailure", "shape": "dot", "size": 10}, {"id": "player\ncondition", "label": "player\ncondition", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "cooperation\npunishment", "label": 1, "to": "game\ngroup", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "cooperation\nbehavior", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "cooperation\nsocial", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "cooperation\ngame", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "game\ncooperation", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "cooperation\ngroup", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "good\ncontribution", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "punishment\nexperiment", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "cooperation\npunishment", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "punishment\nexperiment", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "cooperation\nsocial", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "cooperation\ngame", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "game\ncooperation", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "cooperation\ngroup", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "good\ncontribution", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "cooperation\nbehavior", "weight": 1}, {"from": "game\ngroup", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "cooperation\nsocial", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "cooperation\ngame", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "game\ncooperation", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "cooperation\ngroup", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "good\ncontribution", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "cooperation\nbehavior", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "punishment\nexperiment", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "cooperation\ngame", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "game\ncooperation", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "cooperation\ngroup", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "good\ncontribution", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "cooperation\nsocial", "label": 1, "to": "player\ncondition", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "punishment\nexperiment", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "game\ncooperation", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "cooperation\ngroup", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "good\ncontribution", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "cooperation\ngame", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "punishment\nexperiment", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "cooperation\ngroup", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "good\ncontribution", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "game\ncooperation", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "punishment\nexperiment", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "good\ncontribution", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "cooperation\ngroup", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "contribution\ngood", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "good\ncontribution", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "contribution\ngood", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "group\ngame", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "punishment\nexperiment", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "game\nbehavior", "weight": 1}, {"from": "group\ngame", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "game\nbehavior", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "game\nbehavior", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "game\nbehavior", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "game\nbehavior", "label": 1, "to": "social\ngame", "weight": 1}, {"from": "game\nbehavior", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "game\nbehavior", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "game\nbehavior", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "need\ngame", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "social\ngame", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "need\ngame", "label": 1, "to": "logical\nplayer", "weight": 1}, {"from": "need\ngame", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "need\ngame", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "need\ngame", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "logical\nplayer", "label": 1, "to": "player\ncondition", "weight": 1}, {"from": "logical\nplayer", "label": 1, "to": "tension\ngroup", "weight": 1}, {"from": "logical\nplayer", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "logical\nplayer", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "tension\ngroup", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "tension\ngroup", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "tension\ngroup", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "tension\ngroup", "label": 1, "to": "group\nbehavior", "weight": 1}, {"from": "tension\ngroup", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "tension\ngroup", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "group\nbehavior", "label": 1, "to": "role\nsatisfaction", "weight": 1}, {"from": "group\nbehavior", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "group\nbehavior", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "group\nbehavior", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "group\nbehavior", "label": 1, "to": "person\nstrategy", "weight": 1}, {"from": "role\nsatisfaction", "label": 1, "to": "ingroup\nbias", "weight": 1}, {"from": "role\nsatisfaction", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "role\nsatisfaction", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "ingroup\nbias", "label": 1, "to": "outgroup\nfailure", "weight": 1}, {"from": "ingroup\nbias", "label": 1, "to": "player\ncondition", "weight": 1}, {"from": "ingroup\nbias", "label": 1, "to": "group\ngood", "weight": 1}, {"from": "group\ngood", "label": 1, "to": "outgroup\nfailure", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

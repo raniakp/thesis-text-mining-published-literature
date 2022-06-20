@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 500px;
+            height: 500px;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "prisoners dilemma\nprisoner dilemma", "label": "prisoners dilemma\nprisoner dilemma", "shape": "dot", "size": 10}, {"id": "altruistic punishment\npunishment", "label": "altruistic punishment\npunishment", "shape": "dot", "size": 10}, {"id": "cooperative behavior\nconflict psychology", "label": "cooperative behavior\nconflict psychology", "shape": "dot", "size": 10}, {"id": "cooperative behavior\nsocial", "label": "cooperative behavior\nsocial", "shape": "dot", "size": 10}, {"id": "sex differences\nhuman sex", "label": "sex differences\nhuman sex", "shape": "dot", "size": 10}, {"id": "norms\nsocial", "label": "norms\nsocial", "shape": "dot", "size": 10}, {"id": "experimental economics\nbehavioral economics", "label": "experimental economics\nbehavioral economics", "shape": "dot", "size": 10}, {"id": "risk aversion\nrisk", "label": "risk aversion\nrisk", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"from": "prisoners dilemma\nprisoner dilemma", "label": 1, "to": "altruistic punishment\npunishment", "weight": 1}, {"from": "prisoners dilemma\nprisoner dilemma", "label": 1, "to": "cooperative behavior\nconflict psychology", "weight": 1}, {"from": "prisoners dilemma\nprisoner dilemma", "label": 1, "to": "cooperative behavior\nsocial", "weight": 1}, {"from": "prisoners dilemma\nprisoner dilemma", "label": 1, "to": "sex differences\nhuman sex", "weight": 1}, {"from": "prisoners dilemma\nprisoner dilemma", "label": 1, "to": "norms\nsocial", "weight": 1}, {"from": "altruistic punishment\npunishment", "label": 1, "to": "cooperative behavior\nconflict psychology", "weight": 1}, {"from": "altruistic punishment\npunishment", "label": 1, "to": "experimental economics\nbehavioral economics", "weight": 1}, {"from": "altruistic punishment\npunishment", "label": 1, "to": "cooperative behavior\nsocial", "weight": 1}, {"from": "altruistic punishment\npunishment", "label": 1, "to": "sex differences\nhuman sex", "weight": 1}, {"from": "altruistic punishment\npunishment", "label": 1, "to": "norms\nsocial", "weight": 1}, {"from": "cooperative behavior\nconflict psychology", "label": 1, "to": "cooperative behavior\nsocial", "weight": 1}, {"from": "cooperative behavior\nconflict psychology", "label": 1, "to": "cooperative behavior\nconflict psychology", "weight": 1}, {"from": "cooperative behavior\nconflict psychology", "label": 1, "to": "sex differences\nhuman sex", "weight": 1}, {"from": "cooperative behavior\nconflict psychology", "label": 1, "to": "norms\nsocial", "weight": 1}, {"from": "cooperative behavior\nconflict psychology", "label": 1, "to": "risk aversion\nrisk", "weight": 1}, {"from": "cooperative behavior\nsocial", "label": 1, "to": "sex differences\nhuman sex", "weight": 1}, {"from": "cooperative behavior\nsocial", "label": 1, "to": "norms\nsocial", "weight": 1}, {"from": "cooperative behavior\nsocial", "label": 1, "to": "risk aversion\nrisk", "weight": 1}, {"from": "sex differences\nhuman sex", "label": 1, "to": "norms\nsocial", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
